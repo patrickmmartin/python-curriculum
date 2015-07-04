@@ -23,7 +23,8 @@ Children will need to use the materials which accompany these challenges. Files 
 
 Make sure that each child has read and write access to their own copy of these resources.
 
-Pygame should also be installed. Make sure that you have installed Pygame for Python 3.2, which can be downloaded <a href="http://www.pygame.org/download.shtml">from the Pygame website</a>. You can check whether Pygame has installed successfully by typing `import pygame` into the Python shell. If you don't receive an error message then it means everything is working!
+Pygame should also be installed. Make sure that you have installed Pygame for Python 3.2, which can be downloaded <a href="http://www.pygame.org/download.shtml">from the Pygame website</a>. 
+Specfically for Debian Jessie for example - the project is pygame and is packaged as _python-pygame_; obtain this via `sudo apt-get python-pygame`. Debian defaults python to 2.7.9 at the time of writing and installs the python2 pygame. You can check whether Pygame has installed successfully by typing `import pygame` into the Python shell. If you don't receive an error message then it means everything is working!
 
 #Learning Objectives
 + Creating and editing graphics;
