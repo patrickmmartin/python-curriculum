@@ -1,4 +1,7 @@
 .DS_Store
 builddoc/output
 *.pyc
+<<<<<<< HEAD
 *.py~
+=======
+>>>>>>> 65e66772cc07dfbdeff46eb97d8e0812fc197b04
