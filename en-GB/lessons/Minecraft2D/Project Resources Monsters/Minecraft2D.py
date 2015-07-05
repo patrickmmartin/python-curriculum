@@ -191,8 +191,9 @@ while True:
         if creeper[2] > 6:
             creeper[2] = 0
             newcreeper = [creeper[0], creeper[1]]
-            newcreeper[0] += random.randint(-1, 1)
-            newcreeper[1] += random.randint(-1, 1)
+            dir = [[0, 1], [1, 0], [0, -1], [-1, 0]][random.randint(0, 3)];
+            newcreeper[0] += dir[0]
+            newcreeper[1] += dir[1]
             
             if ((newcreeper[0] < 0) or (newcreeper[0] >= MAPWIDTH) or 
                 (newcreeper[1] < 0) or (newcreeper[1] >= MAPHEIGHT)):
