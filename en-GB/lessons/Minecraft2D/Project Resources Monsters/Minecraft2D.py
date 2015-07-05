@@ -16,11 +16,14 @@ MAPHEIGHT = 30 # tiles
 #maps each resource to the EVENT key used to place/craft it
 controls = {event:event+49 for event in range(len(resources))}
 
-#maps each resource to the KEYBAORD key used to place/craft it
+#maps each resource to the KEYBOARD key used to place/craft it
 invKeys = {key:str(1+key) for key in range(len(resources))}
 
 #the position of the player [x,y]
 playerPos = [0,0]
+
+# creeper positions
+creepers = [];
 
 #use list comprehension to create our tilemap
 tilemap = [ [DIRT for w in range(MAPWIDTH)] for h in range(MAPHEIGHT) ] 
@@ -139,6 +142,9 @@ while True:
                             #place the item
                             tilemap[playerPos[1]][playerPos[0]] = key
                     
+    #draw a brown rectangle behind the tiles for those glyphs with transparency
+    pygame.draw.rect(DISPLAYSURF, BROWN, (0, 0, MAPWIDTH  * TILESIZE, MAPHEIGHT * TILESIZE))
+
     #loop through each row
     for row in range(MAPHEIGHT):
         #loop through each column in the row
@@ -149,8 +155,11 @@ while True:
     #display the player at the correct position 
     DISPLAYSURF.blit(PLAYER,(playerPos[0]*TILESIZE,playerPos[1]*TILESIZE))
 
+    # display the creepers
+    [DISPLAYSURF.blit(CREEPER, (creeper[0] * TILESIZE, creeper[1] * TILESIZE)) for creeper in creepers]
+
     #draw a rectangle behind the instructions
-    pygame.draw.rect(DISPLAYSURF, BLACK, (MAPWIDTH*TILESIZE,0,200,MAPHEIGHT*TILESIZE))
+    pygame.draw.rect(DISPLAYSURF, BLACK, (MAPWIDTH * TILESIZE, 0, 400, MAPHEIGHT * TILESIZE))
 
     #display the inventory, starting 10 pixels in
     xPosition = 10
@@ -177,7 +186,27 @@ while True:
         DISPLAYSURF.blit(craftText,(MAPWIDTH*TILESIZE+20,pos))
         pos+=20
 
+    
+    for creeper in creepers:
+        if creeper[2] > 6:
+            creeper[2] = 0
+            newcreeper = [creeper[0], creeper[1]]
+            newcreeper[0] += random.randint(-1, 1)
+            newcreeper[1] += random.randint(-1, 1)
+            
+            if ((newcreeper[0] < 0) or (newcreeper[0] >= MAPWIDTH) or 
+                (newcreeper[1] < 0) or (newcreeper[1] >= MAPHEIGHT)):
+                creepers.remove(creeper) # remove that creeper
+            else:
+                if tilemap[newcreeper[1]][newcreeper[0]] in [DIRT, SAND, GRASS]:
+                    creeper[0], creeper[1] = newcreeper[0], newcreeper[1]
+
+        creeper[2] += 1
+    if (random.randint(0, 100) == 99) and (len(creepers) < 10):
+        creepers.append([random.randint(0, MAPWIDTH), random.randint(0, MAPHEIGHT), 0])
+
     #update the display
     pygame.display.update()
     #create a short delay
     fpsClock.tick(24)
+

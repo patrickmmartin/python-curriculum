@@ -76,6 +76,11 @@ inventory =   {
 
 PLAYER = pygame.image.load('player.png')
 
+#the player image
+#----------------
+
+CREEPER = pygame.image.load('creeper.png')
+
 
 #rules to make new objects
 #-------------------------
