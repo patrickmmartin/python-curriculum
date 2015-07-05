@@ -76,7 +76,7 @@ inventory =   {
 
 PLAYER = pygame.image.load('player.png')
 
-#the player image
+#the generic creeper image
 #----------------
 
 CREEPER = pygame.image.load('creeper.png')
