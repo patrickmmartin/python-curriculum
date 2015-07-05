@@ -37,6 +37,7 @@ WATER   = 2
 BRICK   = 3
 SAND    = 4
 GLASS   = 5
+BOMB    = 6
 
 
 #a list of all game resources
@@ -80,6 +81,7 @@ PLAYER = pygame.image.load('player.png')
 #----------------
 
 CREEPER = pygame.image.load('creeper.png')
+BOMB = pygame.image.load('bomb.png')
 
 
 #rules to make new objects
