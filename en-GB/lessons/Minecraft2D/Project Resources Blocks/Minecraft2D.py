@@ -139,6 +139,9 @@ while True:
                             #place the item
                             tilemap[playerPos[1]][playerPos[0]] = key
                     
+    #draw a brown rectangle behind the tiles for those glyphs with transparency
+    pygame.draw.rect(DISPLAYSURF, BROWN, (0, 0, MAPWIDTH  * TILESIZE, MAPHEIGHT * TILESIZE))
+
     #loop through each row
     for row in range(MAPHEIGHT):
         #loop through each column in the row
